@@ -2,22 +2,13 @@
 <%- include('./partials/navbar.ejs') %>
 
     <h1>CONTACTTT MEEE FORM</h1>
-    <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label">Example label</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
-      </div>
-      <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Another label</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-    </div>
+    <form action="/" id="contactform" class="form" method="POST">
+      <input class="name child" type="text" placeholder="Name" maxlength="20"  required/>
+      <input class="surname child" type="text" placeholder="Surname" maxlength="20"  required/>
+      <input class="email child" type="email" placeholder="Email" required/>
+      <textarea class="message child" type="text" placeholder="message" maxlength="1000" form="contactform" rows="10" required></textarea>>
+      <button type="submit child">Send</button>
+    </form>
 
 <%- include('./partials/footer.ejs') %>
 
