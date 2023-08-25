@@ -1,0 +1,45 @@
+html{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: blueviolet!important;
+    margin: 0;
+    padding: 0;
+}
+
+
+.homeBackground {
+    background-image: url("../images/background_home.jpg");
+    text-align: center;
+    height: 800px;
+    margin: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+} 
+
+#form{
+    display: flex;
+    flex-direction: column;
+}
+
+#input{
+    margin: 20px;
+    height: 40px;
+}
+
+#but{
+    margin: 10px;
+    background-color: greenyellow;
+    color: rgb(24, 26, 26);
+    width: 30%;
+    height: 40px;
+}
+

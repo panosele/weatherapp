@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhodes Weather</title>
+   <!-- Bootstrap CSS -->  
+  <%- include('./partials/links.ejs') %>
+</head>
+<body>
+
+    <%- include('./partials/navbar.ejs') %>
+
+    <h1>Discover your weather</h1>
+    <div class="homeBackground">
+      <form action="">
+        <input id="input" type="text" placeholder="Location"/>
+        <button id="but" type="submit">Search</button>
+        <!-- <input id="input" class="form-control mr-sm-2" type="search" placeholder="Location" aria-label="Search">
+        <button id="but" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for Location</button> -->
+      </form>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>
