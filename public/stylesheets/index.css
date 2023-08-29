@@ -37,9 +37,14 @@ body{
 
 #but{
     margin: 10px;
-    background-color: greenyellow;
+    background-color: rgb(178, 185, 166);
     color: rgb(24, 26, 26);
     width: 30%;
     height: 40px;
+}
+
+#but:hover{
+    background-color: greenyellow;
+    color: rgb(24, 26, 26);
 }
 

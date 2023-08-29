@@ -3,6 +3,13 @@ h1{
     padding-top: 50px;
 }
 
+h3{
+    text-align: center;
+    color: aquamarine;
+    margin: 50px;
+    padding: 50px;
+}
+
 .form{
     display: flex;
     flex-direction: column;
