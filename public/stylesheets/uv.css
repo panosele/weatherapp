@@ -1,0 +1,28 @@
+.uvDiv {
+    background-image: url(../images/background_uv.jpg);
+    text-align: center;
+    height: 550px;
+    width: auto;
+    margin: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+} 
+
+#weatherDiv{
+    min-height: 400px;
+    margin: 100px;
+}
+
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: green;
+}

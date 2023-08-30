@@ -9,6 +9,8 @@ dotenv.config();
 const app = express();
 const PORT = 8080;
 const _dirname = "/";
+const API_KEY = process.env.OPENWEATHER_API;
+const UV_API_KEY = process.env.UV_API;
 
 app.use(express.static("public"));
 app.use(bodyParser())
@@ -28,7 +30,6 @@ app.get("/", (req,res)=>{
 })
 
 app.post("/", async (req,res)=>{
-  const API_KEY = process.env.OPENWEATHER_API;
   try {
     // get the latitude and longtitude from City name from openweathermap API geolocation
     const city = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${req.body.location}&limit=1&appid=${API_KEY}`);
@@ -66,6 +67,40 @@ app.get("/temperature", (req,res)=>{
 
 app.get("/uv", (req,res)=>{
   res.render('./uv')
+})
+
+app.post("/uv", async (req,res)=>{
+  try {
+    // get the latitude and longtitude from City name from openweather API geolocation
+    const city = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${req.body.location}&limit=1&appid=${API_KEY}`);
+    const lat = city.data[0].lat;
+    const lon = city.data[0].lon;
+    // get the current uv City name from https://www.openuv.io/dashboard
+    const myHeaders = new Headers();
+      myHeaders.append("x-access-token", "openuv-ciq4zrlly3a6a8-io");
+      myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    fetch(`https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lon}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        const uvData = {
+          time: result.result.uv_time,
+          uv: result.result.uv
+        }
+        console.log(uvData.time)
+        res.render('./uv', {content: uvData});
+      })
+      .catch(error => console.log('error', error));
+    
+    
+  } catch (error) {
+    console.error(error);
+  }
 })
 
 app.get("/wind", (req,res)=>{
