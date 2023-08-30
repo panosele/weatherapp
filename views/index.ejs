@@ -12,9 +12,30 @@
     <%- include('./partials/navbar.ejs') %>
 
     <h1>Discover your weather</h1>
+    <% if (locals.content) { %>
+      <div id="weatherDiv">
+        <h3><%= locals.content.city %></h3>
+        <img src="<%= locals.content.icon %>" alt=""/>
+        <p> Weather: <%= locals.content.main %></p>
+        <p> Description: <%= locals.content.description %></p>
+        <p> Pressure: <%= locals.content.pressure %></p>
+        <p> Humidity: <%= locals.content.humidity %></p>
+        <h4>TEMPERATURE:</h4>
+        <p>Feels like: <%= locals.content.feelsLike %></p>
+        <p> Minimum: <%= locals.content.temperatureMin %></p>
+        <p> Max: <%= locals.content.temperatureMax %></p>
+        <h4>WIND</h4>
+        <p> Speed: <%= locals.content.wind_speed %></p>
+        <p> Direction: <%= locals.content.wind_direction %></p>
+        <p> Gust: <%= locals.content.wind_gust %></p>
+      </div>
+      <%} else { %>
+      <p style="display: none;"></p>
+      <% } %>
+
     <div class="homeBackground">
-      <form id="form" action="">
-        <input id="input" type="text" placeholder="Location"/>
+      <form id="form" action="/" method="POST">
+        <input id="input" type="text" placeholder="Location" name="location" required/>
         <button id="but" type="submit">Search</button>
         <!-- <input id="input" class="form-control mr-sm-2" type="search" placeholder="Location" aria-label="Search">
         <button id="but" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for Location</button> -->
