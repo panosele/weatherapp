@@ -1,8 +1,28 @@
 <%- include('./partials/links.ejs') %>
 <%- include('./partials/navbar.ejs') %>
 
-    <h1>Temperature</h1>
-    <div style="height: 800px;"></div>
+<h1>What is ISS location?</h1>
+    
+
+<% if (locals.content) { %>
+  <div id="weatherDiv">
+    <p> Time: <%= locals.content.time %></p>
+    <p> UV: <%= locals.content.uv %></p>
+    <% if (locals.content.uv > 4.5) {%>
+      <h3 class="red">You should put on Sunscreen protection.</h3>
+    <%} else {%>
+      <h3 class="green">You are safe!</h3>
+    <% } %>
+  </div>
+  <%} else { %>
+    <div class="earthquakeDiv">
+      <form id="form" action="/earthquake" method="POST">
+        <button id="but" type="submit">Find out</button>
+        <!-- <input id="input" class="form-control mr-sm-2" type="search" placeholder="Location" aria-label="Search">
+        <button id="but" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for Location</button> -->
+      </form>
+    </div>
+  <% } %>
 
 <%- include('./partials/footer.ejs') %>
 

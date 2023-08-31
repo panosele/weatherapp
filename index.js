@@ -25,6 +25,7 @@ app.use(
   )
   app.use("/js", express.static(path.join(_dirname, "node_modules/jquery/dist")))
 
+  //HOME
 app.get("/", (req,res)=>{
     res.render('index')
 })
@@ -61,10 +62,31 @@ app.post("/", async (req,res)=>{
   }
 })
 
-app.get("/temperature", (req,res)=>{
-  res.render('./temperature')
+// EARTHQUKES
+app.get("/iss", (req,res)=>{
+  res.render('./iss')
 })
 
+app.post("/iss" ,async (req,res)=>{
+  axios.get(`https://api.aerisapi.com/isss/${req.body.location}?format=json&filter=all&limit=20&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((result) => {
+        console.log(result);
+        const issData = {
+          time: result.result.uv_time,
+          uv: result.result.uv
+        }
+        console.log(issData)
+        res.render('./uv', {content: issData});
+    })
+    .catch((error) => {
+        console.error('Oh no!');
+    });
+})
+
+//UV RADIATION
 app.get("/uv", (req,res)=>{
   res.render('./uv')
 })

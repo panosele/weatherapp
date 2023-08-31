@@ -66,8 +66,15 @@ body{
 #weatherDiv h4{
     text-decoration: underline;
 }
+
 #weatherDiv h3{
     text-decoration: underline;
     margin: 0;
     padding: 0;
+}
+
+.searchAgain{
+    font-size: 1.4em;
+    color: azure;
+    text-decoration: none;
 }
