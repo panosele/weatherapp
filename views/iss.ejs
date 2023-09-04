@@ -6,17 +6,13 @@
 
 <% if (locals.content) { %>
   <div id="weatherDiv">
-    <p> Time: <%= locals.content.time %></p>
-    <p> UV: <%= locals.content.uv %></p>
-    <% if (locals.content.uv > 4.5) {%>
-      <h3 class="red">You should put on Sunscreen protection.</h3>
-    <%} else {%>
-      <h3 class="green">You are safe!</h3>
-    <% } %>
+    <h4> The coordinates of the current location are: %></h4>
+    <p> Latidute: <%= locals.content.lat %></p>
+    <p> Longtitude: <%= locals.content.lon %></p>
   </div>
   <%} else { %>
-    <div class="earthquakeDiv">
-      <form id="form" action="/earthquake" method="POST">
+    <div class="issDiv">
+      <form id="form" action="/iss" method="POST">
         <button id="but" type="submit">Find out</button>
         <!-- <input id="input" class="form-control mr-sm-2" type="search" placeholder="Location" aria-label="Search">
         <button id="but" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for Location</button> -->
@@ -25,23 +21,5 @@
   <% } %>
 
 <%- include('./partials/footer.ejs') %>
-
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-      crossorigin="anonymous"
-    ></script> -->
 
     <%- include('./partials/scripts.ejs') %>

@@ -26,9 +26,26 @@ app.use(
   app.use("/js", express.static(path.join(_dirname, "node_modules/jquery/dist")))
 
   //HOME
+
+app.get("/:page", (req, res)=>{
+    res.render(`./${req.params.page}`)
+  })
+
 app.get("/", (req,res)=>{
     res.render('index')
 })
+// app.get("/iss", (req,res)=>{
+//   res.render('./iss')
+// })
+// app.get("/uv", (req,res)=>{
+//   res.render('./uv')
+// })
+// app.get("/wind", (req,res)=>{
+//   res.render('./wind')
+// })
+// app.get("/contact", (req,res)=>{
+//   res.render('./contact')
+// })
 
 app.post("/", async (req,res)=>{
   try {
@@ -62,35 +79,17 @@ app.post("/", async (req,res)=>{
   }
 })
 
-// EARTHQUKES
-app.get("/iss", (req,res)=>{
-  res.render('./iss')
-})
+// ISS LOCATION
+
 
 app.post("/iss" ,async (req,res)=>{
-  axios.get(`https://api.aerisapi.com/isss/${req.body.location}?format=json&filter=all&limit=20&client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]`)
-    .then((response) => {
-        return response.json();
-    })
-    .then((result) => {
-        console.log(result);
-        const issData = {
-          time: result.result.uv_time,
-          uv: result.result.uv
-        }
-        console.log(issData)
-        res.render('./uv', {content: issData});
-    })
-    .catch((error) => {
-        console.error('Oh no!');
-    });
+  const result = await axios.get(`http://api.open-notify.org/iss-now.json`);
+  const lon = result.data.iss_position.longitude;
+  const lat = result.data.iss_position.latitude;
+  res.render("./iss", {content: {lat: lat, lon: lon}})
 })
 
 //UV RADIATION
-app.get("/uv", (req,res)=>{
-  res.render('./uv')
-})
-
 app.post("/uv", async (req,res)=>{
   try {
     // get the latitude and longtitude from City name from openweather API geolocation
@@ -125,14 +124,7 @@ app.post("/uv", async (req,res)=>{
   }
 })
 
-app.get("/wind", (req,res)=>{
-  res.render('./wind')
-})
-
-app.get("/contact", (req,res)=>{
-  res.render('./contact')
-})
-
+//CONTACT FORM
 app.post("/contact", async (req,res)=>{
   console.log(req.body)
   let content = "Thank you for your contact. We will reach to you as soon as possible!"
