@@ -76,6 +76,7 @@ app.post("/", async (req,res)=>{
     res.render('index', {content: weatherData});
   } catch (error) {
     console.error(error);
+    res.redirect("/")
   }
 })
 
@@ -83,10 +84,14 @@ app.post("/", async (req,res)=>{
 
 
 app.post("/iss" ,async (req,res)=>{
-  const result = await axios.get(`http://api.open-notify.org/iss-now.json`);
-  const lon = result.data.iss_position.longitude;
-  const lat = result.data.iss_position.latitude;
-  res.render("./iss", {content: {lat: lat, lon: lon}})
+  try{
+    const result = await axios.get(`http://api.open-notify.org/iss-now.json`);
+    const lon = result.data.iss_position.longitude;
+    const lat = result.data.iss_position.latitude;
+    res.render("./iss", {content: {lat: lat, lon: lon}})
+  }catch (error){
+    res.redirect("./iss")
+  }
 })
 
 //UV RADIATION
@@ -121,6 +126,7 @@ app.post("/uv", async (req,res)=>{
     
   } catch (error) {
     console.error(error);
+    res.redirect("/");
   }
 })
 
