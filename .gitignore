@@ -45,3 +45,6 @@ npm-debug.log
 *.env
 .env
 variables.env
+
+#nodemodules
+node_modules
