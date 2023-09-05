@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = 8080;
+const PORT = port = process.env.PORT || 8080;
 const _dirname = "/";
 const API_KEY = process.env.OPENWEATHER_API;
 const UV_API_KEY = process.env.UV_API;
