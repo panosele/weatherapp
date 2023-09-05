@@ -48,3 +48,6 @@ variables.env
 
 #nodemodules
 node_modules
+
+#vscode
+.vscode
